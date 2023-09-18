@@ -3,11 +3,10 @@ package com.example.library.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Data
-public class Genre {
+public class Book {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +17,4 @@ public class Genre {
 
     @Column
     private String description;
-
-    @Column
-    private LocalDate creationDate;
 }
