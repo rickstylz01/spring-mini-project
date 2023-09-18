@@ -3,6 +3,7 @@ package com.example.library.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -13,8 +14,20 @@ public class Book {
     private Long id;
 
     @Column
-    private String name;
+    private String title;
 
     @Column
     private String description;
+
+    @Column
+    private String author;
+
+    @Column
+    private LocalDate publicationDate;
+
+    @Column
+    private String publisher;
+
+    @Column
+    private Float price;
 }
