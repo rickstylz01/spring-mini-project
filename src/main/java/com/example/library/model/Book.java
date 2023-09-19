@@ -1,14 +1,10 @@
 package com.example.library.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -41,10 +37,7 @@ public class Book {
     private Boolean availability;
 
     @Column
-    private int availableCopies;
-
-    @Column
-    private int borrowedCopies;
+    private Integer numberOfCopies;
 
     @ManyToMany
     @JoinTable(
@@ -54,6 +47,6 @@ public class Book {
     )
     private Set<Genre> genres = new HashSet<>();
 
-    @ManyToMany(mappedBy = "books")
-    private Set<User> users = new HashSet<>();
+    @ManyToOne
+    private User users;
 }

@@ -1,9 +1,6 @@
 package com.example.library.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,5 +31,6 @@ public class Genre {
     private int booksCount; // number of books within this genre
 
     @ManyToMany(mappedBy = "genres")
+    @JoinColumn(name = "user_id")
     private Set<Book> books = new HashSet<>();
 }
