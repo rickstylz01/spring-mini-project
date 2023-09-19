@@ -35,4 +35,13 @@ public class UserService {
             throw new InformationExistException("user with email address: " + userObject.getEmailAddress() + " already exists.");
         }
     }
+
+    /**
+     * Finds a user in the system by their email address
+     * @param emailAddress The email address property to search by
+     * @return The user object with the specific email address
+     */
+    public User findUserByEmailAddress(String emailAddress) {
+        return userRepository.findUserByEmailAddress(emailAddress);
+    }
 }
