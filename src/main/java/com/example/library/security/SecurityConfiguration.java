@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true) // if you want access you need to be authorized
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
