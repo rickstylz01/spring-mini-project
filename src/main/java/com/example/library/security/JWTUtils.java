@@ -18,6 +18,11 @@ public class JWTUtils {
     @Value("${jwt-expiration-ms}")
     private int jwtExpMs;
 
+    /**
+     * Generates a JSON Web Token for the provided user details.
+     * @param myUserDetails The user details used to generate the JWT
+     * @return The JWT token as a {@link String}
+     */
     public String generateJwtToken(MyUserDetails myUserDetails) {
         return Jwts.builder()
                 .setSubject(myUserDetails.getUsername())
@@ -25,5 +30,19 @@ public class JWTUtils {
                 .setExpiration(new Date(new Date().getTime() + jwtExpMs))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
                 .compact();
+    }
+
+    /**
+     * Retrieves the username from a JSON Web Token (JWT)
+     * @param token The JWT token from which to extract the username
+     * @return The username as a {@link String} obtained from the JWT
+     */
+    public String getUserNameFromJwtToken(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(jwtSecret)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 }
