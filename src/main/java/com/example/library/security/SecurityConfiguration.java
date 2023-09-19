@@ -23,10 +23,10 @@ public class SecurityConfiguration {
     }
 
     // TODO create JwtRequestFilter
-    @Bean
-    public JwtRequestFilter authenticationJwtTokenFilter() {
-        return new JwtRequestFilter();
-    }
+//    @Bean
+//    public JwtRequestFilter authenticationJwtTokenFilter() {
+//        return new JwtRequestFilter();
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -41,9 +41,9 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().csrf().disable()
-                .headers().frameOptions().disable();
-        http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+                .and().csrf().disable();
+//                .headers().frameOptions().disable();
+//        http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
