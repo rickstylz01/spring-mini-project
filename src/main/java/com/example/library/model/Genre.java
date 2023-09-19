@@ -20,5 +20,10 @@ public class Genre {
     private String description;
 
     @Column
+    private int popularityRating;
+
+    @Column
     private LocalDate creationDate;
+
+    @Column int booksCount;
 }
