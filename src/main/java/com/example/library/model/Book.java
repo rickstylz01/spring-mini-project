@@ -30,4 +30,13 @@ public class Book {
 
     @Column
     private Float price;
+
+    @Column
+    private Boolean availability;
+
+    @Column
+    private int availableCopies;
+
+    @Column
+    private int borrowedCopies;
 }

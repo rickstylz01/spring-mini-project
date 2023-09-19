@@ -25,5 +25,6 @@ public class Genre {
     @Column
     private LocalDate creationDate;
 
-    @Column int booksCount;
+    @Column
+    private int booksCount; // number of books within this genre
 }
