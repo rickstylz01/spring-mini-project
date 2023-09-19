@@ -34,6 +34,24 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
 
+    /**
+     * Parses a JWT from the "Authorization" header of an HTTP request.
+     * @param request The HTTP request containing the JWT in the "Authorization" header.
+     * @return The extracted JWT as a {@link String}, or null if not found.
+     */
+    private String parseJwt(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+
+        // Check if the "Authorization" header exists and starts with "Bearer"
+        if (StringUtils.hasLength(headerAuth) && headerAuth.startsWith("Bearer")) {
+            // Extract and return the JWT portion (excluding "Bearer ")
+            return headerAuth.substring(7);
+        }
+        // if no JWT found, return null
+        return null;
+    }
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
