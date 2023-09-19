@@ -7,7 +7,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -44,12 +46,14 @@ public class Book {
     @Column
     private int borrowedCopies;
 
-    @OneToMany(mappedBy = "book", orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Genre> genreList;
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<Genre> genres = new HashSet<>();
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany(mappedBy = "books")
+    private Set<User> users = new HashSet<>();
 }
