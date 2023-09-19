@@ -26,15 +26,19 @@ public class Genre {
     private String description;
 
     @Column
-    private int popularityRating;
+    private Integer popularityRating;
 
     @Column
     private LocalDate creationDate;
 
     @Column
-    private int booksCount; // number of books within this genre
+    private Integer booksCount; // number of books within this genre
 
-    @ManyToMany(mappedBy = "genres")
-    @JoinColumn(name = "user_id")
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
     private Set<Book> books = new HashSet<>();
 }

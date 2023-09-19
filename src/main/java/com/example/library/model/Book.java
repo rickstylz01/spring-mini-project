@@ -43,12 +43,7 @@ public class Book {
     @Column
     private Integer numberOfCopies;
 
-    @ManyToMany
-    @JoinTable(
-            name = "book_genre",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
+    @ManyToMany(mappedBy = "books")
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToOne

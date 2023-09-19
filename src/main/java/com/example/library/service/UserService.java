@@ -20,8 +20,15 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Creates a new user in the system
+     * @param userObject the user object to be created
+     * @return The newly created {@link User} object
+     * @throws InformationExistException If a user with the same email address already exists
+     */
     public User createUser(User userObject) {
         if(!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
+            // sets a new password if there is no existing user with the same email
             userObject.setPassword(passwordEncoder.encode(userObject.getEmailAddress()));
             return userRepository.save(userObject);
         } else {
