@@ -18,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     /**
-     * Look up user information bases on the email address
+     * Look up user information based on the email address
      * @param emailAddress the username identifying the user whose data is required.
      * @return The user information found
      * @throws UsernameNotFoundException if the email address does not exist
