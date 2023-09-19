@@ -22,6 +22,7 @@ public class SecurityConfiguration {
         this.myUserDetailsService = myUserDetailsService;
     }
 
+    // TODO create JwtRequestFilter
     @Bean
     public JwtRequestFilter authenticationJwtTokenFilter() {
         return new JwtRequestFilter();
