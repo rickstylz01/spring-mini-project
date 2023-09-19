@@ -1,10 +1,9 @@
 package com.example.library.repository;
 
-import com.example.library.model.Genre;
+import com.example.library.model.Checkout;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GenreRepository extends JpaRepository<Genre, Long> {
-    Genre findByName(String genreName);
+public interface CheckoutRepository extends JpaRepository<Checkout, Long> {
 }
