@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,4 +25,12 @@ public class User {
     @Column
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_book",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> books = new HashSet<>();
 }

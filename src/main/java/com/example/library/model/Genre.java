@@ -8,7 +8,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
