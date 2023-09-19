@@ -17,11 +17,15 @@ public class Checkout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private Long userId;
 
+    @Column
     private Long bookId;
 
+    @Column
     private LocalDate checkoutDate;
 
+    @Column
     private LocalDate dueDate;
 }
