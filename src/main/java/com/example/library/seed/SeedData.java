@@ -1,6 +1,9 @@
 package com.example.library.seed;
 
 import com.example.library.model.User;
+import com.example.library.repository.BookRepository;
+import com.example.library.repository.GenreRepository;
+import com.example.library.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
