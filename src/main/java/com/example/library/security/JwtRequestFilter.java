@@ -33,7 +33,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         this.jwtUtils = jwtUtils;
     }
 
-
     /**
      * Parses a JWT from the "Authorization" header of an HTTP request.
      * @param request The HTTP request containing the JWT in the "Authorization" header.
@@ -50,7 +49,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // if no JWT found, return null
         return null;
     }
-
 
     /**
      * Performs internal filtering to validate and set user authentication based on a JWT in the HTTP request
