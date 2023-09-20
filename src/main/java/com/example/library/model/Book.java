@@ -3,9 +3,10 @@ package com.example.library.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,26 +24,15 @@ public class Book {
     private String title;
 
     @Column
-    private String description;
-
-    @Column
     private String author;
-
-    @Column
-    private LocalDate publicationDate;
-
-    @Column
-    private String publisher;
 
     @Column
     private Float price;
 
-    @Column
-    private Integer numberOfCopies;
-
     @ManyToMany(mappedBy = "books")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToOne
-    private User users;
+    private User user;
 }

@@ -3,6 +3,8 @@ package com.example.library.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -40,5 +42,6 @@ public class Genre {
             joinColumns = @JoinColumn(name = "genre_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Book> books = new HashSet<>();
 }
