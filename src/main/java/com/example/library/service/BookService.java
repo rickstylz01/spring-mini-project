@@ -58,6 +58,15 @@ public class BookService {
         }
     }
 
+    public Optional<Book> getBook(Long bookId) {
+        Book book = bookRepository.findByIdAndUserId(bookId, BookService.getCurrentLoggedInUser().getId());
+        if (book == null) {
+            throw new InformationNotFoundException("book with id: " + bookId + ", not found");
+        } else {
+            return Optional.of(book);
+        }
+    }
+
     /**
      * Compares the properties of two book objects to determine if they are equal
      * @param existingBook The existing book object to compare
@@ -110,6 +119,11 @@ public class BookService {
         return bookRepository.save(existingBook);
     }
 
+    /**
+     * Deletes a book with the specified ID belonging to the current user.
+     * @param bookId The unique identifier of the book to be deleted
+     * @return An {@link Optional} containing the deleted {@link Book} object if found and deleted, or empty if the book does not exist
+     */
     public Optional<Book> deleteBook(Long bookId) {
         Optional<Book> bookOptional = Optional.ofNullable(bookRepository.findByIdAndUserId(bookId, getCurrentLoggedInUser().getId()));
         if (bookOptional.isPresent()) {

@@ -29,6 +29,11 @@ public class BookController {
         return bookService.getBooks();
     }
 
+    @GetMapping(path = "/books/{bookId}") // http://localhost:9096/api/books/1/
+    public Optional<Book> getBook(@PathVariable(value = "bookId") Long bookId) {
+        return bookService.getBook(bookId);
+    }
+
     @PutMapping(path = "/books/{bookId}") // http://localhost:9096/api/books/1/
     public Book updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
         return bookService.updateBook(bookId, bookObject);
