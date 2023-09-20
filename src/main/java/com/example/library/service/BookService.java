@@ -43,6 +43,10 @@ public class BookService {
         }
     }
 
+    /**
+     * Retrieves a list of books associated with the currently logged-in User.
+     * @return A list of {@link Book} objects belonging to the current user
+     */
     public List<Book> getBooks() {
         List<Book> bookList = bookRepository.findByUserId(BookService.getCurrentLoggedInUser().getId());
         if(bookList.isEmpty()) {
