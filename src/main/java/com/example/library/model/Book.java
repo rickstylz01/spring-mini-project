@@ -44,5 +44,5 @@ public class Book {
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToOne
-    private User users;
+    private User user;
 }

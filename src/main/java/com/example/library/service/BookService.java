@@ -30,7 +30,7 @@ public class BookService {
 
     /**
      * Creates a new book based on the provided book object
-     * @param bookObject
+     * @param bookObject The book object to be created
      * @return The newly created {@link Book} object
      */
     public Book createBook(Book bookObject) {
@@ -38,7 +38,7 @@ public class BookService {
         if (book != null) {
             throw new InformationExistException("a book with the title: " + bookObject.getTitle() + ", already exists");
         } else {
-            bookObject.setUsers(getCurrentLoggedInUser());
+            bookObject.setUser(getCurrentLoggedInUser());
             return bookRepository.save(bookObject);
         }
     }
