@@ -38,9 +38,6 @@ public class Book {
     private Float price;
 
     @Column
-    private Boolean availability;
-
-    @Column
     private Integer numberOfCopies;
 
     @ManyToMany(mappedBy = "books")
