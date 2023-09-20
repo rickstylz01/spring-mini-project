@@ -3,6 +3,8 @@ package com.example.library.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,6 +30,7 @@ public class Book {
     private Float price;
 
     @ManyToMany(mappedBy = "books")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToOne

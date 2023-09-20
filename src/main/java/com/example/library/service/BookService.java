@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -107,5 +108,15 @@ public class BookService {
 
         // Save the updated book
         return bookRepository.save(existingBook);
+    }
+
+    public Optional<Book> deleteBook(Long bookId) {
+        Optional<Book> bookOptional = Optional.ofNullable(bookRepository.findByIdAndUserId(bookId, getCurrentLoggedInUser().getId()));
+        if (bookOptional.isPresent()) {
+            bookRepository.deleteById(bookId);
+            return bookOptional;
+        } else {
+            throw new InformationNotFoundException("book with id: " + bookId + ", not found" );
+        }
     }
 }

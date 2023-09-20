@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api") // http://localhost:9096/api
@@ -31,5 +32,10 @@ public class BookController {
     @PutMapping(path = "/books/{bookId}") // http://localhost:9096/api/books/1/
     public Book updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
         return bookService.updateBook(bookId, bookObject);
+    }
+
+    @DeleteMapping(path = "/books/{bookId}") // http://localhost:9096/api/books/1/
+    public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
+        return bookService.deleteBook(bookId);
     }
 }
