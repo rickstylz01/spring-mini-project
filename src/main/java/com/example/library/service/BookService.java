@@ -58,6 +58,11 @@ public class BookService {
         }
     }
 
+    /**
+     * Retrieves a book with the specified ID belonging to the current user
+     * @param bookId bookId The unique identifier of the book to be retrieved.
+     * @return An {@link Optional} containing the retrieved {@link Book} object if found, or empty if the book does not exist
+     */
     public Optional<Book> getBook(Long bookId) {
         Book book = bookRepository.findByIdAndUserId(bookId, BookService.getCurrentLoggedInUser().getId());
         if (book == null) {
