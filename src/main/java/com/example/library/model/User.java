@@ -8,8 +8,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -39,5 +39,5 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books = new ArrayList<>();
 }
