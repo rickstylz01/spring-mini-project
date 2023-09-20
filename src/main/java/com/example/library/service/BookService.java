@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BookService {
@@ -54,5 +55,57 @@ public class BookService {
         } else {
             return bookList;
         }
+    }
+
+    /**
+     * Compares the properties of two book objects to determine if they are equal
+     * @param existingBook The existing book object to compare
+     * @param newBook The new book object to compare
+     * @return True if the book properties are equal, false otherwise.
+     */
+    private boolean areBookPropertiesEqual(Book existingBook, Book newBook) {
+        return Objects.equals(existingBook.getTitle(), newBook.getTitle()) &&
+                Objects.equals(existingBook.getAuthor(), newBook.getAuthor()) &&
+                existingBook.getPrice() == newBook.getPrice() &&
+                Objects.equals(existingBook.getGenres(), newBook.getGenres()) &&
+                Objects.equals(existingBook.getUser(), newBook.getUser());
+    }
+
+    /**
+     * Updates the properties of an existing book based on the provided book object
+     * @param bookId The unique identifier of the book to be updated
+     * @param bookObject The book object containing updated properties
+     * @return The updated {@link Book} object if changes are made, or the existing book if no properties are modified
+     */
+    public Book updateBook(Long bookId, Book bookObject) {
+        Book existingBook = bookRepository.findByIdAndUserId(bookId, getCurrentLoggedInUser().getId());
+        if (existingBook == null) {
+            throw new InformationNotFoundException("Book not found");
+        }
+
+        // Check if any property is different, if not, return the existing book
+        if (areBookPropertiesEqual(existingBook, bookObject)) {
+            throw new InformationExistException(("The book data is the same as the existing book."));
+        }
+
+        // Update only the properties that have changed
+        if (!Objects.equals(existingBook.getTitle(), bookObject.getTitle())) {
+            existingBook.setTitle(bookObject.getTitle());
+        }
+
+        if (!Objects.equals(existingBook.getAuthor(), bookObject.getAuthor())) {
+            existingBook.setAuthor(bookObject.getAuthor());
+        }
+
+        if (existingBook.getPrice() != bookObject.getPrice()) {
+            existingBook.setPrice(bookObject.getPrice());
+        }
+
+        if (!Objects.equals(existingBook.getGenres(), bookObject.getGenres())) {
+            existingBook.setGenres(bookObject.getGenres());
+        }
+
+        // Save the updated book
+        return bookRepository.save(existingBook);
     }
 }

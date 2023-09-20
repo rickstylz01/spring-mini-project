@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,22 +22,10 @@ public class Book {
     private String title;
 
     @Column
-    private String description;
-
-    @Column
     private String author;
 
     @Column
-    private LocalDate publicationDate;
-
-    @Column
-    private String publisher;
-
-    @Column
     private Float price;
-
-    @Column
-    private Integer numberOfCopies;
 
     @ManyToMany(mappedBy = "books")
     private Set<Genre> genres = new HashSet<>();
