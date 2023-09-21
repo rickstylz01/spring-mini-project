@@ -17,7 +17,6 @@ import java.util.Optional;
 @Service
 public class BookService {
     private BookRepository bookRepository;
-
     //TODO add genre repository
 
     @Autowired
