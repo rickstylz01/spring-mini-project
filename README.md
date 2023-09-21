@@ -2,7 +2,7 @@
 
 ## Library Management System (Class Project)
 
-This is a class project for a Library Management System, created as part of a course or class assignment. The project is designed to demonstrate your understanding of software development concepts, particularly in the context of building a web application using Spring Boot.
+This is a class project for a Library Management System, created as part of a course or class assignment. The project is designed to demonstrate my understanding of software development concepts, particularly in the context of building a web application using Spring Boot.
 
 ## Project Overview
 
